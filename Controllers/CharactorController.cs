@@ -18,20 +18,20 @@ namespace dotnet_webapi.Controllers
             
         }
         [HttpGet("GetAll")] // Set route name and swagger
-        public ActionResult<List<Charactor>> Get()
+        public async Task<ActionResult<List<Charactor>>> Get()
         {
-            return Ok(_charactorService.GetAllCharactor());
+            return Ok(await _charactorService.GetAllCharactor());
         }
 
         [HttpGet("{id}")] // For swagger generate
-        public ActionResult<Charactor> GetSingle(int id)
+        public async Task<ActionResult<Charactor>> GetSingle(int id)
         {
-            return Ok(_charactorService.GetCharactorById(id));
+            return Ok(await _charactorService.GetCharactorById(id));
         }
         [HttpPost] // For swagger generate
-        public ActionResult<List<Charactor>> AddCharactor(Charactor newCharactor)
+        public async Task<ActionResult<List<Charactor>>> AddCharactor(Charactor newCharactor)
         {
-            return Ok(_charactorService.AddCharactor(newCharactor));
+            return Ok(await _charactorService.AddCharactor(newCharactor));
         }
 
     }
