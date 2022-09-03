@@ -8,8 +8,8 @@ namespace dotnet_webapi.Services.CharactorService
     public interface ICharactorService
     {
         // Add Task<> when use Asynchronous calls
-        Task<List<Charactor>> GetAllCharactor();
-        Task<Charactor> GetCharactorById(int id);
-        Task<List<Charactor>> AddCharactor(Charactor newCharactor);
+        Task<ServiceResponse<List<Charactor>>> GetAllCharactor();
+        Task<ServiceResponse<Charactor>> GetCharactorById(int id);
+        Task<ServiceResponse<List<Charactor>>> AddCharactor(Charactor newCharactor);
     }
 }

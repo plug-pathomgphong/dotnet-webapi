@@ -11,20 +11,25 @@ namespace dotnet_webapi.Services.CharactorService
             new Charactor(),
             new Charactor{ Id= 1, Name= "Sam"}
         };
-        public async Task<List<Charactor>> AddCharactor(Charactor newCharactor)
+        public async Task<ServiceResponse<List<Charactor>>> AddCharactor(Charactor newCharactor)
         {
+            var serviceResponse = new ServiceResponse<List<Charactor>>();
             charactors.Add(newCharactor);
-            return charactors;
+            serviceResponse.Data = charactors;
+            return serviceResponse;
         }
 
-        public async Task<List<Charactor>> GetAllCharactor()
+        public async Task<ServiceResponse<List<Charactor>>> GetAllCharactor()
         {
-            return charactors;
+            return new ServiceResponse<List<Charactor>> { Data = charactors };
         }
 
-        public async Task<Charactor> GetCharactorById(int id)
+        public async Task<ServiceResponse<Charactor>> GetCharactorById(int id)
         {
-            return charactors.FirstOrDefault(c => c.Id == id);
+            var serviceResponse = new ServiceResponse<Charactor>();
+            var charactor = charactors.FirstOrDefault(c => c.Id == id);
+            serviceResponse.Data = charactor;
+            return serviceResponse;
         }
     }
 }
