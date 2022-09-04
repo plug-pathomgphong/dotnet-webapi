@@ -29,6 +29,25 @@ namespace dotnet_webapi.Services.CharactorService
             return serviceResponse;
         }
 
+        public async Task<ServiceResponse<List<GetCharactorDTO>>> DeleteCharactor(int id)
+        {
+            ServiceResponse<List<GetCharactorDTO>> response = new ServiceResponse<List<GetCharactorDTO>>();
+            try
+            {
+                Charactor charactor = charactors.First(c => c.Id == id);
+                charactors.Remove(charactor);
+                response.Data = charactors.Select(c => _mapper.Map<GetCharactorDTO>(c)).ToList();
+                            
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;   
+        }
+
         public async Task<ServiceResponse<List<GetCharactorDTO>>> GetAllCharactor()
         {
             return new ServiceResponse<List<GetCharactorDTO>> { Data = charactors.Select(c => _mapper.Map<GetCharactorDTO>(c)).ToList() };

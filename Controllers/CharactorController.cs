@@ -24,6 +24,16 @@ namespace dotnet_webapi.Controllers
             return Ok(await _charactorService.GetAllCharactor());
         }
 
+        [HttpDelete("{id}")] // For swagger generate
+        public async Task<ActionResult<ServiceResponse<List<GetCharactorDTO>>>> DeleteCharactor(int id)
+        {
+            var response = await _charactorService.DeleteCharactor(id);
+            if (response.Data == null){
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
         [HttpGet("{id}")] // For swagger generate
         public async Task<ActionResult<ServiceResponse<GetCharactorDTO>>> GetSingle(int id)
         {
