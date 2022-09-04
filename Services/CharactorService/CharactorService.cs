@@ -41,5 +41,33 @@ namespace dotnet_webapi.Services.CharactorService
             serviceResponse.Data = _mapper.Map<GetCharactorDTO>(charactor);
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<GetCharactorDTO>> UpdateCharactor(UpdateCharactorDTO updateCharactor)
+        {
+            ServiceResponse<GetCharactorDTO> response = new ServiceResponse<GetCharactorDTO>();
+            try
+            {
+                Charactor charactor = charactors.FirstOrDefault(c => c.Id == updateCharactor.Id);
+
+                _mapper.Map(updateCharactor, charactor);
+                // charactor.Name = updateCharactor.Name;
+                // charactor.HitPoints = updateCharactor.HitPoints;
+                // charactor.Strength = updateCharactor.Strength;
+                // charactor.Defense = updateCharactor.Defense;
+                // charactor.Intelligence = updateCharactor.Intelligence;
+                // charactor.Class = updateCharactor.Class;
+
+                response.Data = _mapper.Map<GetCharactorDTO>(charactor);
+            
+                            
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;   
+        }
     }
 }

@@ -29,10 +29,21 @@ namespace dotnet_webapi.Controllers
         {
             return Ok(await _charactorService.GetCharactorById(id));
         }
+
         [HttpPost] // For swagger generate
         public async Task<ActionResult<ServiceResponse<List<GetCharactorDTO>>>> AddCharactor(AddCharactorDTO newCharactor)
         {
             return Ok(await _charactorService.AddCharactor(newCharactor));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<GetCharactorDTO>>> UpdateCharactor(UpdateCharactorDTO updateCharactor)
+        {
+            var response = await _charactorService.UpdateCharactor(updateCharactor);
+            if (response.Data == null){
+                return NotFound(response);
+            }
+            return Ok(response);
         }
 
     }

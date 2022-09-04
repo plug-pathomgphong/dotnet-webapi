@@ -13,6 +13,7 @@ namespace dotnet_webapi
         {
             CreateMap<Charactor, GetCharactorDTO>();
             CreateMap<AddCharactorDTO, Charactor>();
+             CreateMap<UpdateCharactorDTO, Charactor>();
         }
     }
 }
