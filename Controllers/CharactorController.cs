@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotnet_webapi.Dtos.Charactor;
 using dotnet_webapi.Services.CharactorService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,18 +19,18 @@ namespace dotnet_webapi.Controllers
             
         }
         [HttpGet("GetAll")] // Set route name and swagger
-        public async Task<ActionResult<ServiceResponse<List<Charactor>>>> Get()
+        public async Task<ActionResult<ServiceResponse<List<GetCharactorDTO>>>> Get()
         {
             return Ok(await _charactorService.GetAllCharactor());
         }
 
         [HttpGet("{id}")] // For swagger generate
-        public async Task<ActionResult<ServiceResponse<Charactor>>> GetSingle(int id)
+        public async Task<ActionResult<ServiceResponse<GetCharactorDTO>>> GetSingle(int id)
         {
             return Ok(await _charactorService.GetCharactorById(id));
         }
         [HttpPost] // For swagger generate
-        public async Task<ActionResult<ServiceResponse<List<Charactor>>>> AddCharactor(Charactor newCharactor)
+        public async Task<ActionResult<ServiceResponse<List<GetCharactorDTO>>>> AddCharactor(AddCharactorDTO newCharactor)
         {
             return Ok(await _charactorService.AddCharactor(newCharactor));
         }
