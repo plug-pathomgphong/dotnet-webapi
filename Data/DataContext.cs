@@ -12,7 +12,7 @@ namespace dotnet_webapi.Data
         {
             
         }
-
         public DbSet<Charactor> Charactors { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
