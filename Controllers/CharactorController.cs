@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using dotnet_webapi.Dtos.Charactor;
 using dotnet_webapi.Services.CharactorService;
@@ -21,11 +22,12 @@ namespace dotnet_webapi.Controllers
             
         }
 
-        [AllowAnonymous] // Not require Authorize
+        // [AllowAnonymous] // Not require Authorize
         [HttpGet("GetAll")] // Set route name and swagger
         public async Task<ActionResult<ServiceResponse<List<GetCharactorDTO>>>> Get()
         {
-            return Ok(await _charactorService.GetAllCharactor());
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            return Ok(await _charactorService.GetAllCharactor(userId));
         }
 
         [HttpDelete("{id}")] // For swagger generate

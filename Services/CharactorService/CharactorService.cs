@@ -34,10 +34,12 @@ namespace dotnet_webapi.Services.CharactorService
         }
 
 
-        public async Task<ServiceResponse<List<GetCharactorDTO>>> GetAllCharactor()
+        public async Task<ServiceResponse<List<GetCharactorDTO>>> GetAllCharactor(int userId)
         {
             var response = new ServiceResponse<List<GetCharactorDTO>>();
-            var dbCharactors = await _context.Charactors.ToListAsync();
+            var dbCharactors = await _context.Charactors
+                .Where(c => c.User.Id == userId)
+                .ToListAsync();
             response.Data = dbCharactors.Select(c => _mapper.Map<GetCharactorDTO>(c)).ToList();
             return response;
         }
