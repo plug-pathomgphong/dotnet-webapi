@@ -20,6 +20,8 @@ namespace dotnet_webapi.Controllers
             _charactorService = charactorService; // this.charactorService = charactorService
             
         }
+
+        [AllowAnonymous] // Not require Authorize
         [HttpGet("GetAll")] // Set route name and swagger
         public async Task<ActionResult<ServiceResponse<List<GetCharactorDTO>>>> Get()
         {
