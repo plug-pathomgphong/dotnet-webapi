@@ -32,6 +32,17 @@ namespace dotnet_webapi.Controllers
             return Ok(response);
         }
 
+        [HttpPost("login")]
+        public async Task<ActionResult<ServiceResponse<int>>> Login(UserLoginDTO request)
+        {
+            var response = await _authRepo.Login(request.Username, request.Password);
+            if(!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
         
     }
 }
