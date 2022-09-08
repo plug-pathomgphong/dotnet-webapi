@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using dotnet_webapi.Dtos.Charactor;
 using dotnet_webapi.Services.CharactorService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_webapi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CharactorController : ControllerBase
