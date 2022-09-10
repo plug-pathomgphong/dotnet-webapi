@@ -17,5 +17,8 @@ namespace dotnet_webapi.Models
         public Rpgclass Class { get; set; } = Rpgclass.Knight;
 
         public User? User { get; set; }
+        public Weapons Weapons { get; set; }
+
+        public List<Skill> Skills { get; set; }
     }
 }

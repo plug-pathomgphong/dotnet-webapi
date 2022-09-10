@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotnet_webapi.Dtos.Skill;
+using dotnet_webapi.Dtos.Weapons;
 
 namespace dotnet_webapi.Dtos.Charactor
 {
@@ -14,7 +16,10 @@ namespace dotnet_webapi.Dtos.Charactor
         public int Strength { get; set; } = 10;
         public int Defense { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
-
         public Rpgclass Class { get; set; } = Rpgclass.Knight;
+        public GetWeaponDTO Weapons { get; set; }
+        public List<GetSkillDTO> Skills { get; set; }
+
+
     }
 }

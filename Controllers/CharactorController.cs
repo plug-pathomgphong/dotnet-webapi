@@ -26,8 +26,7 @@ namespace dotnet_webapi.Controllers
         [HttpGet("GetAll")] // Set route name and swagger
         public async Task<ActionResult<ServiceResponse<List<GetCharactorDTO>>>> Get()
         {
-            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
-            return Ok(await _charactorService.GetAllCharactor(userId));
+            return Ok(await _charactorService.GetAllCharactor());
         }
 
         [HttpDelete("{id}")] // For swagger generate
@@ -60,6 +59,12 @@ namespace dotnet_webapi.Controllers
                 return NotFound(response);
             }
             return Ok(response);
+        }
+
+        [HttpPost("Skill")]
+        public async Task<ActionResult<ServiceResponse<GetCharactorDTO>>> AddCharactorSkill(AddCharactorSkillDTO newCharactorSkill)
+        {
+            return Ok(await _charactorService.AddCharactorSkill(newCharactorSkill));
         }
 
     }

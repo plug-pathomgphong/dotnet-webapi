@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using dotnet_webapi.Dtos.Charactor;
+using dotnet_webapi.Dtos.Skill;
+using dotnet_webapi.Dtos.Weapons;
 
 namespace dotnet_webapi
 {
@@ -13,7 +15,9 @@ namespace dotnet_webapi
         {
             CreateMap<Charactor, GetCharactorDTO>();
             CreateMap<AddCharactorDTO, Charactor>();
-             CreateMap<UpdateCharactorDTO, Charactor>();
+            CreateMap<UpdateCharactorDTO, Charactor>();
+            CreateMap<Weapons, GetWeaponDTO>();
+            CreateMap<Skill, GetSkillDTO>();
         }
     }
 }
