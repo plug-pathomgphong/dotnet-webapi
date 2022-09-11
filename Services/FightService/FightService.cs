@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using dotnet_webapi.Data;
 using dotnet_webapi.Dtos.Fight;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,12 @@ namespace dotnet_webapi.Services.FightService
     public class FightService : IFightService
     {
         private readonly DataContext _context;
-        public FightService(DataContext context)
+        private readonly IMapper _mapper;
+
+        public FightService(DataContext context, IMapper mapper)
         {
             _context = context;
-            
+            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<FightResultDTO>> Fight(FightRequestDTO request)
@@ -179,6 +182,22 @@ namespace dotnet_webapi.Services.FightService
             if (damage > 0)
                 opponent.HitPoints -= damage;
             return damage;
+        }
+
+        public async Task<ServiceResponse<List<HighScoreDTO>>> GetHighScore()
+        {
+            var charactors = await _context.Charactors
+                .Where(c => c.Fights > 0)
+                .OrderByDescending(c => c.Victories)
+                .ThenBy(c => c.Defeats)
+                .ToListAsync();
+
+            var response = new ServiceResponse<List<HighScoreDTO>>
+            {
+                Data = charactors.Select(c => _mapper.Map<HighScoreDTO>(c)).ToList()
+            };
+
+            return response;
         }
     }
 }
