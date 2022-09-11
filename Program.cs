@@ -1,6 +1,7 @@
 global using dotnet_webapi.Models;
 using dotnet_webapi.Data;
 using dotnet_webapi.Services.CharactorService;
+using dotnet_webapi.Services.FightService;
 using dotnet_webapi.Services.WeaponService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -43,6 +44,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IWeaponService, WeaponService>();
+builder.Services.AddScoped<IFightService, FightService>();
 
 var app = builder.Build();
 

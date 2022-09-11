@@ -19,6 +19,9 @@ namespace dotnet_webapi.Dtos.Charactor
         public Rpgclass Class { get; set; } = Rpgclass.Knight;
         public GetWeaponDTO Weapons { get; set; }
         public List<GetSkillDTO> Skills { get; set; }
+        public int Fights { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
 
 
     }
